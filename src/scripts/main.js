@@ -3,6 +3,7 @@
 const form = document.createElement('form');
 
 form.className = 'new-employee-form';
+form.noValidate = true;
 
 document.body.append(form);
 
@@ -22,7 +23,7 @@ const positionLabel = document.createElement('label');
 const positionInput = document.createElement('input');
 
 positionLabel.textContent = 'Position: ';
-positionInput.name = 'name';
+positionInput.name = 'position';
 positionInput.type = 'text';
 positionInput.dataset.qa = 'position';
 positionInput.required = true;
@@ -110,6 +111,18 @@ form.addEventListener('submit', (clickEvent) => {
 
   if (age < 18 || age > 90) {
     showNotification('error', 'Age must be between 18 and 90');
+
+    return;
+  }
+
+  if (!position) {
+    showNotification('error', 'Position is required',);
+
+    return;
+  }
+
+  if (!position || !office || !salary) {
+    showNotification('error', 'All fields are required');
 
     return;
   }
